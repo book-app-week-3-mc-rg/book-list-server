@@ -1,0 +1,32 @@
+{
+  "name": "book-list-server",
+  "version": "1.0.0",
+  "description": "Book app for Code 301",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/book-app-week-3-mc-rg/book-list-server.git"
+  },
+  "keywords": [
+    "Book",
+    "301",
+    "Demi",
+    "Bear",
+    "Dog"
+  ],
+  "author": "Mike Castor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/book-app-week-3-mc-rg/book-list-server/issues"
+  },
+  "homepage": "https://github.com/book-app-week-3-mc-rg/book-list-server#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "pg": "^7.4.1"
+  }
+}
