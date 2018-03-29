@@ -22,9 +22,27 @@ client.on('error', err => console.error(err));
 
 // app.get('/api/v1/books', (req, res) => res.send('It is alive!!!'));
 app.use(cors());
+
 app.get('/api/v1/books', (req, res) => {
   client.query(`
   SELECT book_id, author, title, image_url FROM books`)
+    .then(result => res.send(result.rows))
+    .catch(console.error);
+});
+
+//fetching single book from the database
+app.get('/api/v1/books/:id', (req, res) => {
+  client.query(`
+  SELECT book_id, author, title, image_url, description FROM books WHERE book_id =$1`, [req.params.id])
+    .then(result => res.send(result.rows))
+    .catch(console.error);
+});
+
+//Post route to create new database entry
+app.post('/api/v1/books', (req, res) => {
+  client.query(`
+  INSERT INTO books(author, title, isbn, image_url, description
+    VALUES($1, $2, $3, $4, $5) ON CONFLICT DO NOTHING`), [req.body.author, req.body.title, req.body.isbn, req.body.image_url, req.body.description]
     .then(result => res.send(result.rows))
     .catch(console.error);
 });
