@@ -5,6 +5,7 @@
 const express = require('express');
 const pg = require('pg');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 //application setup
 
@@ -22,10 +23,12 @@ client.on('error', err => console.error(err));
 
 // app.get('/api/v1/books', (req, res) => res.send('It is alive!!!'));
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/api/v1/books', (req, res) => {
   client.query(`
-  SELECT book_id, author, title, image_url FROM books`)
+  SELECT book_id, author, title, image_url FROM books ORDER BY title`)
     .then(result => res.send(result.rows))
     .catch(console.error);
 });
@@ -33,7 +36,7 @@ app.get('/api/v1/books', (req, res) => {
 //fetching single book from the database
 app.get('/api/v1/books/:id', (req, res) => {
   client.query(`
-  SELECT book_id, author, title, image_url, description FROM books WHERE book_id =$1`, [req.params.id])
+  SELECT book_id, author, title, isbn, image_url, description FROM books WHERE book_id =$1`, [req.params.id])
     .then(result => res.send(result.rows))
     .catch(console.error);
 });
