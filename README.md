@@ -21,6 +21,8 @@ This project is built using html, css, handlebars.js, javascript, jQuery, expres
 03-27-2018 12:00am - began working to connect the database to the DOM.
 03-27-2018 4:30pm - site worked on localhost 
 03-27-2018 5:45pm - added additional module coding patterns
+03-28-2018 9:00am - added a .get function to retrieve a single book object from the database and added .put function to post a new book to the database.
+03-29-2018 9:00am - added body-parser to the requirements.
 
 ## Credits and Collaborations
 Thanks to Suze, Nicholas and Sam for extraordinary support!  
